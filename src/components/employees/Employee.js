@@ -5,6 +5,7 @@ import useResourceResolver from "../../hooks/resource/useResourceResolver";
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 import person from "./person.png"
 import "./Employee.css"
+import AnimalRepository from "../../repositories/AnimalRepository";
 
 
 export default ({ employee }) => {
@@ -23,8 +24,14 @@ export default ({ employee }) => {
     }, [])
 
     useEffect(() => {
-        if (resource?.employeeLocations?.length > 0) {
-            markLocation(resource.employeeLocations[0])
+        if (resource?.locations?.length > 0) {
+            markLocation(resource.locations[0])
+        }
+    }, [resource])
+
+    useEffect(() => {
+        if (resource?.animals?.length > 0) {
+            setCount(resource.animals.length)
         }
     }, [resource])
 
@@ -50,10 +57,15 @@ export default ({ employee }) => {
                     employeeId
                         ? <>
                             <section>
-                                Caring for 0 animals
+                                {
+                                `Caring for ${animalCount} animals`
+                                }
                             </section>
                             <section>
-                                Working at unknown location
+                                {
+                                 `Working at ${location.name} location`
+                                }
+                                
                             </section>
                         </>
                         : ""
