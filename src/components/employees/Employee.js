@@ -5,7 +5,6 @@ import useResourceResolver from "../../hooks/resource/useResourceResolver";
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 import person from "./person.png"
 import "./Employee.css"
-import AnimalRepository from "../../repositories/AnimalRepository";
 
 
 export default ({ employee }) => {
