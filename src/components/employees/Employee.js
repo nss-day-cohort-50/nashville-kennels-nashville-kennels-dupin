@@ -24,9 +24,11 @@ export default ({ employee }) => {
 
     useEffect(() => {
         if (resource?.locations?.length > 0) {
-            markLocation(resource.locations[0])
+            debugger
+            markLocation(resource.locations[0].location)
         }
     }, [resource])
+
 
     useEffect(() => {
         if (resource?.animals?.length > 0) {
@@ -62,9 +64,10 @@ export default ({ employee }) => {
                             </section>
                             <section>
                                 {
-                                 `Working at ${location.name} location`
-                                }
-                                
+                                `Working at ${resource?.locations?.map(location => {
+                                    return location.location.name
+                                }).join(" and ")} location`
+                                 }
                             </section>
                         </>
                         : ""
