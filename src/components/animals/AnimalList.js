@@ -48,6 +48,10 @@ export const AnimalListComponent = (props) => {
         return () => window.removeEventListener("keyup", handler)
     }, [toggleDialog, modalIsOpen])
 
+    console.log(getCurrentUser())
+
+    
+
 
     return (
         <>
@@ -56,7 +60,18 @@ export const AnimalListComponent = (props) => {
 
             {
                 getCurrentUser().employee
-                    ? ""
+                    ? <ul className="animals">
+                    {
+                        animals.map(anml =>
+                            <Animal key={`animal--${anml.id}`} animal={anml}
+                                animalOwners={animalOwners}
+                                owners={owners}
+                                syncAnimals={syncAnimals}
+                                setAnimalOwners={setAnimalOwners}
+                                showTreatmentHistory={showTreatmentHistory}
+                            />)
+                    }
+                </ul>
                     : <div className="centerChildren btn--newResource">
                         <button type="button"
                             className="btn btn-success "
@@ -67,18 +82,7 @@ export const AnimalListComponent = (props) => {
             }
 
 
-            <ul className="animals">
-                {
-                    animals.map(anml =>
-                        <Animal key={`animal--${anml.id}`} animal={anml}
-                            animalOwners={animalOwners}
-                            owners={owners}
-                            syncAnimals={syncAnimals}
-                            setAnimalOwners={setAnimalOwners}
-                            showTreatmentHistory={showTreatmentHistory}
-                        />)
-                }
-            </ul>
+           
         </>
     )
 }
