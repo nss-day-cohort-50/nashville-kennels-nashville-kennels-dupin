@@ -51,7 +51,8 @@ export const Animal = ({ animal, syncAnimals,
                 })
         }
     }, [animalId])
-
+    console.log(currentAnimal)
+    
     return (
         <>
             <li className={classes}>
@@ -84,7 +85,12 @@ export const Animal = ({ animal, syncAnimals,
                         <section>
                             <h6>Caretaker(s)</h6>
                             <span className="small">
-                                Unknown
+                            {
+                                currentAnimal.animalCaretakers?.map((caretakerName) => {
+                                    return caretakerName.user.name
+                                }
+                                ).join(" | ")
+                            }
                             </span>
 
 
@@ -151,3 +157,5 @@ export const Animal = ({ animal, syncAnimals,
         </>
     )
 }
+
+
