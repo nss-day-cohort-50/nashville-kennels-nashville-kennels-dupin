@@ -23,8 +23,16 @@ export default ({ employee }) => {
     }, [])
 
     useEffect(() => {
-        if (resource?.employeeLocations?.length > 0) {
-            markLocation(resource.employeeLocations[0])
+        if (resource?.locations?.length > 0) {
+            debugger
+            markLocation(resource.locations[0].location)
+        }
+    }, [resource])
+
+
+    useEffect(() => {
+        if (resource?.animals?.length > 0) {
+            setCount(resource.animals.length)
         }
     }, [resource])
 
@@ -50,10 +58,16 @@ export default ({ employee }) => {
                     employeeId
                         ? <>
                             <section>
-                                Caring for 0 animals
+                                {
+                                `Caring for ${animalCount} animals`
+                                }
                             </section>
                             <section>
-                                Working at unknown location
+                                {
+                                `Working at ${resource?.locations?.map(location => {
+                                    return location.location.name
+                                }).join(" and ")} location`
+                                 }
                             </section>
                         </>
                         : ""
